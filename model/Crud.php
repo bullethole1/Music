@@ -1,5 +1,5 @@
 <?php
-require '/resourses/config.php';
+require 'resourses/config.php';
 require 'Albums.php';
 
 /**
