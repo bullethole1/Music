@@ -1,6 +1,5 @@
 <?php
-require 'resourses/config.php';
-require 'Albums.php';
+$config = require 'resources/config.php';
 
 /**
  * Created by PhpStorm.
@@ -10,35 +9,23 @@ require 'Albums.php';
  */
 class Crud
 {
-    public function createAlbum()
-    {
+    private $db;
 
+    public function __construct(PDO $db) {
+        $this->db = $db;
     }
 
-    public function getAlbums()
+    public function createAlbum($id, $table)
     {
-
+        $db = new Database();
     }
 
-    public function deleteAlbum()
+    public function deleteAlbums($id, $table)
     {
-        if (isset($_POST['delete_album'])) {
-            $sql = "DELETE FROM `albums` WHERE `id` = :id";
-            $stm_delete = $pdo->prepare($sql);
-            $stm_delete->execute(array('id' => ($_POST['delete_album'])));
-        }
-
-    }
-
-    public function updateAlbums()
-    {
-        if (isset($_POST['delete_album'])) {
-            $rows = ['title', 'artist', 'year'];
-            foreach ($rows as $row) {
-                $updateStm = $pdo->prepare("UPDATE `albums` SET `{$row}` = :{$row} WHERE `id`= :id");
-                $updateStm->execute(["{$row}" => $_POST[$row], 'id' => ($_POST['id'])]);
-            }
-        }
-
+        $db = new Database();
+        $sql = "DELETE FROM $table WHERE id=:id";
+        $delete_stm = $this->$db->prepare($sql);
+        $delete_stm->execute(array(':id' => $id));
+        return true;
     }
 }
