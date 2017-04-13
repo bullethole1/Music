@@ -1,7 +1,6 @@
 <?php
 require 'resources/Database.php';
-require 'model/Albums.php';
-require 'model/Crud.php';
+require 'model/Album.php';
 require 'view/viewAlbums.php';
 $config = require 'resources/config.php';
 
@@ -9,19 +8,12 @@ $config = require 'resources/config.php';
 
 class Controller
 {
-    public function __construct()
+    public function __construct(Database $db)
     {
-        parent::__construct();
     }
 
-    public function deleteAlbums()
-    {
-        $crud = new Crud();
+}
 
-        $data['albums'] = $crud->deleteAlbums();
+if (isset($_POST['addAlbum'])){
 
-
-        $this->view('templates/header', $data);
-
-    }
 }

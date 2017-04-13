@@ -8,21 +8,44 @@
  */
 /*Object to hold album information*/
 
-class Albums
+class Album
 {
     private $id;
     private $title;
     private $artist;
     private $year;
 
-    function __construct($id, $title, $artist, $year)
+    function __construct(Database $db, array $values = [])
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->artist = $artist;
-        $this->year = $year;
+        $this->db = $db;
+        foreach ($values as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
+    public function create()
+    {
+        return $this->db->saveAlbum('albums', $this->title, $this->artist, $this->year);
 
     }
+
+    public function read()
+    {
+        return $this->db->viewAlbum($this->id, 'albums');
+    }
+
+    public function update()
+    {
+        return $this->db->updateAlbum($this->id, 'albums', $this->title, $this->artist, $this->year);
+    }
+
+    public function delete()
+    {
+        return $this->db->deleteAlbumById($this->id, 'albums');
+    }
+
 
     /**
      * @return mixed

@@ -20,4 +20,32 @@ class Database extends PDO
         }
     }
 
+    public function deleteAlbumById($id, $table)
+    {
+        $delete_stm = $this->prepare("DELETE FROM $table WHERE id = :id");
+        $delete_stm->execute([':table' => $table, ':id' => $id]);
+        return true;
+    }
+
+    public function saveAlbum($table, $title, $artist, $year)
+    {
+        $save_stm = $this->prepare("INSERT INTO $table ($title, $artist, $year) VALUES(:title, :artist, :year)");
+        $save_stm->execute([':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return true;
+    }
+
+    public function updateAlbum($id, $table, $title, $artist, $year)
+    {
+        $update_stm = $this->prepare("UPDATE $table SET title = :title, artist = :artist, year = :year WHERE id = :id");
+        $update_stm->execute([':id' => $id, ':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return true;
+    }
+
+    public function viewAlbum($id, $table)
+    {
+        $view_stm = $this->prepare("SELECT * FROM $table WHERE id = :id");
+        $view_stm - $this->exec([':id' => $id, ':table' => $table]);
+        return true;
+    }
+
 }
