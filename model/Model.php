@@ -7,17 +7,27 @@ $config = require 'resources/config.php';
  * Date: 2017-04-10
  * Time: 15:24
  */
-class Model
+class Model extends Database
 {
-    private $db;
+    protected $db;
 
-    public function __construct(PDO $db) {
+    function __construct(Database $db)
+    {
         $this->db = $db;
     }
 
-    public function createAlbum($id, $table)
-    {
-
+    public function getAlbums() {
+        return $this->getAllAlbums($this->id, 'albums');
     }
 
+
+    public function read()
+    {
+        return $this->readAlbum($this->id, 'albums');
+    }
+
+    public function delete()
+    {
+        return $this->deleteById($this->id, 'albums');
+    }
 }
