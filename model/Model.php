@@ -16,18 +16,33 @@ class Model extends Database
         $this->db = $db;
     }
 
-    public function getAlbums() {
-        return $this->getAllAlbums($this->id, 'albums');
+
+    /*public function saveAlbum($table, $title, $artist, $year)
+    {
+        $save_stm = $this->prepare("INSERT INTO $table ($title, $artist, $year) VALUES(:title, :artist, :year)");
+        $save_stm->execute([':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return true;
+    }*/
+
+
+
+    public function updateAlbum($id, $table, $title, $artist, $year)
+    {
+        $update_stm = $this->prepare("UPDATE $table SET title = :title, artist = :artist, year = :year WHERE id = :id");
+        $update_stm->execute([':id' => $id, ':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return true;
     }
 
-
-    public function read()
+    public function deleteById($id, $table)
     {
-        return $this->readAlbum($this->id, 'albums');
+        $delete_stm = $this->prepare("DELETE FROM $table WHERE id = :id");
+        $delete_stm->execute([':table' => $table, ':id' => $id]);
+        return true;
     }
 
-    public function delete()
-    {
-        return $this->deleteById($this->id, 'albums');
+    public function getAllAlbums($id, $table){
+        $get_stm = $this->prepare("SELECT * FROM $table WHERE id = :id");
+        $get_stm->execute([':table' => $table, ':id' => $id]);
+        return true;
     }
 }
