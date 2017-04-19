@@ -1,6 +1,4 @@
 <?php
-$config = require 'resources/config.php';
-
 /**
  * Created by PhpStorm.
  * User: johanlund
@@ -9,40 +7,35 @@ $config = require 'resources/config.php';
  */
 class Model extends Database
 {
-    protected $db;
 
-    function __construct(Database $db)
+
+    public function saveAlbum($title, $artist, $year)
     {
-        $this->db = $db;
+        $save_stm = $this->prepare("INSERT INTO `albums` ($title, $artist, $year) VALUES(:title, :artist, :year)");
+        $save_stm->execute([':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return $save_stm;
     }
 
 
-    /*public function saveAlbum($table, $title, $artist, $year)
+
+    public function updateAlbum($id, $title, $artist, $year)
     {
-        $save_stm = $this->prepare("INSERT INTO $table ($title, $artist, $year) VALUES(:title, :artist, :year)");
-        $save_stm->execute([':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
-        return true;
-    }*/
-
-
-
-    public function updateAlbum($id, $table, $title, $artist, $year)
-    {
-        $update_stm = $this->prepare("UPDATE $table SET title = :title, artist = :artist, year = :year WHERE id = :id");
-        $update_stm->execute([':id' => $id, ':table' => $table, ':title' => $title, ':artist' => $artist, ':year' => $year]);
-        return true;
+        $update_stm = $this->prepare("UPDATE 'albums' SET title = :title, artist = :artist, year = :year WHERE id = :id");
+        $update_stm->execute([':id' => $id, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        return $update_stm;
     }
 
-    public function deleteById($id, $table)
+    public function deleteById($id)
     {
-        $delete_stm = $this->prepare("DELETE FROM $table WHERE id = :id");
-        $delete_stm->execute([':table' => $table, ':id' => $id]);
-        return true;
+        $delete_stm = $this->prepare("DELETE FROM 'albums' WHERE id = :id");
+        $delete_stm->execute([':id' => $id]);
+        $delete_stm->setFetchMode(PDO::FETCH_CLASS, 'Albums');
+        return $delete_stm->fetch();
     }
 
-    public function getAllAlbums($id, $table){
-        $get_stm = $this->prepare("SELECT * FROM $table WHERE id = :id");
-        $get_stm->execute([':table' => $table, ':id' => $id]);
-        return true;
+    public function getAllAlbums(){
+        $get_stm = $this->prepare("SELECT * FROM 'albums'");
+        $get_stm->execute();
+        return $get_stm->setFetchMode(PDO::FETCH_CLASS, 'Album');
     }
 }
