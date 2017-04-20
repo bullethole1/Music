@@ -22,7 +22,7 @@ class Controller
 
         if (empty($page))
             require_once('view/viewAlbums.php');
-        elseif ($page === "animals") {
+        elseif ($page === "albums") {
             $albums = $model->getAlbums();
             // kolla $albums är en array
             require_once('view/viewAlbums.php');
