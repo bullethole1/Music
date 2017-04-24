@@ -14,12 +14,21 @@ class Album
     private $artist;
     private $year;
 
-    function __construct($id, $title, $artist, $year)
+    function __construct($data = [])
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->artist = $artist;
-        $this->year = $year;
+        /*
+        foreach ($data as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->{$key} = $value;
+            }
+        }*/
+
+        if (isset($data['id'])) {
+            $this->id = $data['id'];
+            $this->title = @$data['Title'];
+            $this->artist = @$data['Artist'];
+            $this->year = @$data['Year'];
+        }
     }
 
 

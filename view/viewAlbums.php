@@ -1,17 +1,21 @@
+<?php
+/* @var Controller $this */
+?>
 <h2>Albums</h2>
-<table>
+<table class="table-striped">
     <tr>
         <th>Title</th>
-        <th>Artist/th>
+        <th>Artist</th>
         <th>Year</th>
     </tr>
     <?php
-    foreach ($album as $row):
+    foreach ($this->getAllAlbums() as $row) {
+        /* @var Album $row */
         ?>
         <tr>
-            <td><?php echo $row->getTitle(); ?></td>
-            <td><?php echo $row->getArtist(); ?></td>
-            <td><?php echo $row->getYear(); ?></td>
+            <td><?= $row->getTitle(); ?></td>
+            <td><?= $row->getArtist(); ?></td>
+            <td><?= $row->getYear(); ?></td>
             <td>
                 <button class="btn btn-default" name="btn-edit" id="edit"><a
                             href="../views/update.php?edit_id=<?php echo $row->getId(); ?>">Update</a></button>
@@ -23,13 +27,13 @@
                 </form>
             </td>
         </tr>
-    <?php endforeach ?>
+    <?php } ?>
+
     <tr>
         <th colspan="8" align="right">
             <button class="btn btn-default" name="btn-create" id="create"><a href="../views/create.php">Create</a>
             </button>
         </th>
     </tr>
-
 
 </table>
