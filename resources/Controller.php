@@ -24,8 +24,8 @@ class Controller
         elseif ($page === "albums") {
             require_once('view/viewAlbums.php');
         } else {
-            //require_once('templates/start.php');
-        }
+        //require_once('templates/start.php');
+    }
 
     }
 
