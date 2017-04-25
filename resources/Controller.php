@@ -20,11 +20,15 @@ class Controller
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($page))
-            require_once('view/viewAlbums.php');
-        elseif ($page === "albums") {
-            require_once('view/viewAlbums.php');
-        } else {
-        //require_once('templates/start.php');
+            require('view/start.php');
+        elseif ($page === "show") {
+            require('view/viewAlbums.php');
+        }
+        elseif ($page === "create"){
+            require ('view/create.php');
+        }
+        else {
+        require_once('templates/start.php');
     }
 
     }
