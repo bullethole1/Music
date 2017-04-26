@@ -1,0 +1,16 @@
+{
+    "name": "johanlund/music",
+    "description": "app for displaying and creating album",
+    "authors": [
+        {
+            "name": "Johan Lund",
+            "email": "johanjohan.lund@gmail.com"
+        }
+    ],
+    "require": {},
+  "autoload": {
+	"psr-4": {
+	  "johanlund\\": "Music"
+	}
+  }
+}
