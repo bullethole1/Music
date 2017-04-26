@@ -27,6 +27,9 @@ class Controller
         elseif ($page === "create"){
             require ('view/create.php');
         }
+        elseif ($page === "update.php"){
+            require ('view/update.php');
+        }
         else {
         require_once('view/start_image.php');
     }

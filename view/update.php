@@ -1,12 +1,8 @@
 <?php
 /* @var Controller $this */
-/**
- * Created by PhpStorm.
- * User: johanlund
- * Date: 2017-04-24
- * Time: 13:31
- */
-$editAlbum = $this->editAlbum();
+?>
+<?php
+require ('header.php');
 ?>
     <form action="update.php" method="post">
         <div class="form-group">
