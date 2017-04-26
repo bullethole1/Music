@@ -14,7 +14,7 @@ class Album
     private $artist;
     private $year;
 
-    function __construct($data = [])
+    function __construct($album_data = [])
     {
         /*
         foreach ($data as $key => $value) {
@@ -23,11 +23,11 @@ class Album
             }
         }*/
 
-        if (isset($data['id'])) {
-            $this->id = $data['id'];
-            $this->title = @$data['Title'];
-            $this->artist = @$data['Artist'];
-            $this->year = @$data['Year'];
+        if (isset($album_data['id'])) {
+            $this->id = $album_data['id'];
+            $this->title = @$album_data['Title'];
+            $this->artist = @$album_data['Artist'];
+            $this->year = @$album_data['Year'];
         }
     }
 

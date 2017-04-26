@@ -6,6 +6,7 @@ require ('model/Album.php');
 
 $config = require('resources/config.php');
 $db = new Database($config);
+$album = new Album($album_data);
 
-$controller = new Controller($db);
+$controller = new Controller($db, $album);
 $controller->index();

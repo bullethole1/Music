@@ -23,7 +23,7 @@
                 <td>
                     <form action="index.php" method="post">
                         <input type="hidden" name="delete" value="<?php echo $row->getId(); ?>"/>
-                        <button type="submit" class="btn btn-default" name="btn-delete">Delete</button>
+                        <button type="submit" class="btn btn-default" name="delete_button">Delete</button>
                     </form>
                 </td>
             </tr>
