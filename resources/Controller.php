@@ -19,7 +19,9 @@ class Controller
         elseif ($page === "show") {
             if (isset($_POST['delete'])) {
                 $id = $_POST['delete'];
-                $this->model->deleteById($id);
+                $this->deleteAlbum($id);
+                header('Location:view/start.php');
+                exit();
             }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {
@@ -50,7 +52,7 @@ class Controller
         return $this->model->updateAlbum();
     }
 
-    public function deleteAlbum(Album $id)
+    public function deleteAlbum($id)
     {
 
         return $this->model->deleteById($id);

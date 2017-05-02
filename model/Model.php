@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: johanlund
@@ -39,17 +40,16 @@ class Model
     {
         $delete_stm = $this->db->prepare("DELETE FROM `albums` WHERE id = :id");
         $delete_stm->execute([':id' => $id]);
-        $results = $delete_stm->fetchAll(PDO::FETCH_ASSOC);
-        return $results->fetch();
+        //$results = $delete_stm->fetchAll(PDO::FETCH_ASSOC);
+        return $delete_stm;
     }
 
     public function getAllAlbums()
     {
         $get_stm = $this->db->prepare("SELECT * FROM `albums`");
-        $success = $get_stm->execute();
-
+        $get_stm->execute();
         $results = $get_stm->fetchAll(PDO::FETCH_ASSOC);
-        return array_map(function($item) {
+        return array_map(function ($item) {
             return new Album($item);
         }, $results);
     }

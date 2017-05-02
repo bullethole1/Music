@@ -22,7 +22,7 @@ require('view/header.php');
                                 href="view/update.php?edit_id=<?php echo $row->getId(); ?>">Update</a></button>
                 </td>
                 <td>
-                    <form action="/resources/Controller.php" method="post">
+                    <form action="../index.php?page=show" method="post">
                         <input type="hidden" name="delete" value="<?php echo $row->getId(); ?>"/>
                         <button type="submit" class="btn btn-default" id="delete">Delete</button>
                     </form>
