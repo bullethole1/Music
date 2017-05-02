@@ -1,13 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: johanlund
- * Date: 2017-04-24
- * Time: 13:32
- */
 require('header.php');
 ?>
-<form action="/resources/Controller.php?page=create" method="post">
+<form action="/resources/Controller.php?page=create" method="GET">
     <div class="form-group">
         <label for="title">Title: </label>
         <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>

@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: johanlund
- * Date: 2017-04-19
- * Time: 10:27
- */
 class Controller
 {
     private $model;
@@ -23,25 +16,26 @@ class Controller
         if (empty($page))
             require('view/start.php');
         elseif ($page === "show") {
-            if (isset($_POST['delete'])){
-                $id = $_POST['delete'];
+            if (isset($_GET['delete'])) {
+                $id = $_GET['delete'];
                 $this->model->deleteById($id);
             }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {
-            if (isset($_POST['insert'])) {
+            if (isset($_GET['insert'])) {
                 $album = new Album();
-                $album->setTitle($_POST['title']);
-                $album->setArtist($_POST['artist']);
-                $album->setYear($_POST['year']);
+                $album->setTitle($_GET['title']);
+                $album->setArtist($_GET['artist']);
+                $album->setYear($_GET['year']);
                 $success = $this->createAlbum($album);
-                header('Location: view/start.php?success=' . (int)$success . '&id=' . $album->getId());
+                header('Location:view/start.php?success=' . (int)$success . '&id=' . $album->getId());
+                exit();
             }
             require('view/create.php');
         } elseif ($page === "update.php") {
             require('view/update.php');
         } else {
-            require_once('view/start.php');
+            require('view/start.php');
         }
     }
 

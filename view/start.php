@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: johanlund
- * Date: 2017-04-25
- * Time: 09:39
- */
 require "header.php";
 ?>
     <?php if (isset($_GET['success']) && $_GET['success']): ?>
