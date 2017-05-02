@@ -7,6 +7,9 @@
  */
 class Model
 {
+    /**
+     * @var PDO
+     */
     private $db;
 
     public function __construct(PDO $db)
@@ -14,11 +17,14 @@ class Model
         $this->db = $db;
     }
 
-    public function saveAlbum($title, $artist, $year)
+    public function saveAlbum(Album $album)
     {
-        $save_stm = $this->db->prepare("INSERT INTO `albums` ($title, $artist, $year) VALUES(:title, :artist, :year)");
-        $save_stm->execute([':title' => $title, ':artist' => $artist, ':year' => $year]);
-        return $save_stm;
+        $save_stm = $this->db->prepare("INSERT INTO `albums` (`title`, `artist`, `year`) VALUES(:title, :artist, :year)");
+        $success = $save_stm->execute([':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
+        if ($success) {
+            $album->setId($this->db->lastInsertId());
+        }
+        return $success;
     }
 
 

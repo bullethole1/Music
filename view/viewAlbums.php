@@ -1,5 +1,6 @@
 <?php
 /* @var Controller $this */
+require('view/header.php');
 ?>
     <h2>Johans Albums</h2>
     <table class="table-striped">
@@ -21,20 +22,13 @@
                                 href="view/update.php?edit_id=<?php echo $row->getId(); ?>">Update</a></button>
                 </td>
                 <td>
-                    <form action="index.php" method="post">
+                    <form action="/resources/Controller.php" method="post">
                         <input type="hidden" name="delete" value="<?php echo $row->getId(); ?>"/>
-                        <button type="submit" class="btn btn-default" name="delete_button">Delete</button>
+                        <button type="submit" class="btn btn-default" id="delete">Delete</button>
                     </form>
                 </td>
             </tr>
         <?php } ?>
-
-        <tr>
-            <th colspan="8" align="right">
-                <button class="btn btn-default" name="btn-create" id="create"><a href="view/create.php">Create</a>
-                </button>
-            </th>
-        </tr>
 
     </table>
 

@@ -25,9 +25,9 @@ class Album
 
         if (isset($album_data['id'])) {
             $this->id = $album_data['id'];
-            $this->title = @$album_data['Title'];
-            $this->artist = @$album_data['Artist'];
-            $this->year = @$album_data['Year'];
+            $this->title = @$album_data['title'];
+            $this->artist = @$album_data['artist'];
+            $this->year = @$album_data['year'];
         }
     }
 
@@ -86,6 +86,11 @@ class Album
     public function setYear($year)
     {
         $this->year = $year;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
 }

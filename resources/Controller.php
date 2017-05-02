@@ -9,12 +9,10 @@
 class Controller
 {
     private $model;
-    private $album;
 
-    public function __construct(PDO $db, $album)
+    public function __construct(PDO $db)
     {
         $this->model = new Model($db);
-        $this->album = new Album($album);
     }
 
     public function index()
@@ -23,17 +21,28 @@ class Controller
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
         if (empty($page))
-            require('view/start_image.php');
+            require('view/start.php');
         elseif ($page === "show") {
+            if (isset($_POST['delete'])){
+                $id = $_POST['delete'];
+                $this->model->deleteById($id);
+            }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {
+            if (isset($_POST['insert'])) {
+                $album = new Album();
+                $album->setTitle($_POST['title']);
+                $album->setArtist($_POST['artist']);
+                $album->setYear($_POST['year']);
+                $success = $this->createAlbum($album);
+                header('Location: view/start.php?success=' . (int)$success . '&id=' . $album->getId());
+            }
             require('view/create.php');
         } elseif ($page === "update.php") {
             require('view/update.php');
         } else {
-            require_once('view/start_image.php');
+            require_once('view/start.php');
         }
-
     }
 
     public function getAllAlbums()
@@ -46,25 +55,14 @@ class Controller
         return $this->model->updateAlbum();
     }
 
-    public function deleteAlbum()
+    public function deleteAlbum(Album $id)
     {
-        if (isset($_POST['button_delete'])) {
-            $id = $_POST['delete'];
-        }
 
         return $this->model->deleteById($id);
     }
 
-    public function createAlbum()
+    public function createAlbum(Album $album)
     {
-        if (isset($_POST['insert'])) {
-            $title = $_POST['title'];
-            $this->album->setTitle($title);
-            $artist = $_POST['artist'];
-            $this->album->setArtist($artist);
-            $year = $_POST['year'];
-            $this->album->setYear($year);
-        }
-        return $this->model->saveAlbum($title, $artist, $year);
+        return $this->model->saveAlbum($album);
     }
 }

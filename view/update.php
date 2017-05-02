@@ -28,5 +28,5 @@ require ('header.php');
     </form>
 
 <?php
-require('view/footer.php');
+require('footer.php');
 ?>
