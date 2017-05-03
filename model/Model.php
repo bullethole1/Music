@@ -29,10 +29,10 @@ class Model
     }
 
 
-    public function updateAlbum($id, $title, $artist, $year)
+    public function updateAlbum(Album $album)
     {
         $update_stm = $this->db->prepare("UPDATE `albums` SET title = :title, artist = :artist, year = :year WHERE id = :id");
-        $update_stm->execute([':id' => $id, ':title' => $title, ':artist' => $artist, ':year' => $year]);
+        $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
         return $update_stm;
     }
 

@@ -9,6 +9,10 @@ require "header.php";
         <p>Något gick fel :(</p>
     <?php endif; ?>
 
+<?php if (isset($_GET['delete_success']) && $_GET['delete_success']): ?>
+    <p>Yo album was successfully deleted</p>
+<?php endif; ?>
+
     <h1>Welcome</h1>
     <p>Welcome to my album database.</p>
     <img class="img-responsive" src="https://www.wired.com/images_blogs/business/2009/08/tomcoatesquilt.jpg">

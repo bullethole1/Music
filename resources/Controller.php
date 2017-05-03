@@ -22,6 +22,9 @@ class Controller
                 $this->deleteAlbum($id);
                 header('Location:view/start.php');
                 exit();
+                if (isset($_POST['update'])) {
+
+                }
             }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {
@@ -35,8 +38,6 @@ class Controller
                 exit();
             }
             require('view/create.php');
-        } elseif ($page === "update.php") {
-            require('view/update.php');
         } else {
             require('view/start.php');
         }
