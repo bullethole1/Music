@@ -22,9 +22,6 @@ class Controller
                 $this->deleteAlbum($id);
                 header('Location:view/start.php');
                 exit();
-                if (isset($_POST['update'])) {
-
-                }
             }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {
@@ -38,29 +35,55 @@ class Controller
                 exit();
             }
             require('view/create.php');
+
+        } elseif ($page === 'update') {
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $album = $this->getById($id);
+                require('view/update.php');
+            }
+            if (isset($_POST['btn-update'])) {
+                $album = new Album();
+                $album->setId($_POST['id']);
+                $album->setTitle($_POST['title']);
+                $album->setArtist($_POST['artist']);
+                $album->setYear($_POST['year']);
+                $success = $this->editAlbum($album);
+                require('view/start.php');
+            }
         } else {
             require('view/start.php');
         }
     }
 
-    public function getAllAlbums()
+    public
+    function getAllAlbums()
     {
         return $this->model->getAllAlbums();
     }
 
-    public function editAlbum()
+    public
+    function editAlbum(Album $album)
     {
-        return $this->model->updateAlbum();
+        return $this->model->updateAlbum($album);
     }
 
-    public function deleteAlbum($id)
+    public
+    function deleteAlbum($id)
     {
 
         return $this->model->deleteById($id);
     }
 
-    public function createAlbum(Album $album)
+    public
+    function createAlbum(Album $album)
     {
         return $this->model->saveAlbum($album);
+    }
+
+    public
+    function getById($id)
+    {
+        return $this->model->getAlbumById($id);
     }
 }

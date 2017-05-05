@@ -18,8 +18,7 @@ require('view/header.php');
                 <td><?= $row->getArtist(); ?></td>
                 <td><?= $row->getYear(); ?></td>
                 <td>
-                    <button class="btn btn-default" name="btn-edit" id="edit"><a
-                                href="view/update.php?edit_id=<?php echo $row->getId(); ?>">Update</a></button>
+                    <a class="btn btn-default" href="/index.php?page=update&id=<?php echo $row->getId(); ?>">Edit</a>
                 </td>
                 <td>
                     <form action="../index.php?page=show" method="post">

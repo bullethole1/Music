@@ -18,6 +18,14 @@ class Model
         $this->db = $db;
     }
 
+    public function getAlbumById($id)
+    {
+        $id_stm = $this->db->prepare("SELECT * FROM `albums` WHERE id= :id");
+        $id_stm->execute([':id' => $id]);
+        $id_stm->setFetchMode(PDO::FETCH_ASSOC);
+        return new Album($id_stm->fetch());
+    }
+
     public function saveAlbum(Album $album)
     {
         $save_stm = $this->db->prepare("INSERT INTO `albums` (`title`, `artist`, `year`) VALUES(:title, :artist, :year)");
@@ -40,7 +48,6 @@ class Model
     {
         $delete_stm = $this->db->prepare("DELETE FROM `albums` WHERE id = :id");
         $delete_stm->execute([':id' => $id]);
-        //$results = $delete_stm->fetchAll(PDO::FETCH_ASSOC);
         return $delete_stm;
     }
 
