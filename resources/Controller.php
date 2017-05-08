@@ -19,9 +19,7 @@ class Controller
         elseif ($page === "show") {
             if (isset($_POST['delete'])) {
                 $id = $_POST['delete'];
-                $this->deleteAlbum($id);
-                header('Location:view/start.php');
-                exit();
+                $delete_success = $this->deleteAlbum($id);
             }
             require('view/viewAlbums.php');
         } elseif ($page === "create") {

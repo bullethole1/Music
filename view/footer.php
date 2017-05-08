@@ -7,10 +7,11 @@
  */
 ?>
 
-<footer>
-    <p>footer info här sen</p>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">&copy Johan Lund 2017</p>
+    </div>
 </footer>
-</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

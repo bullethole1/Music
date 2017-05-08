@@ -16,12 +16,6 @@ class Album
 
     function __construct($album_data = [])
     {
-        /*
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }*/
 
         if (isset($album_data['id'])) {
             $this->id = $album_data['id'];

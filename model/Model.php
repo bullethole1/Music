@@ -40,15 +40,13 @@ class Model
     public function updateAlbum(Album $album)
     {
         $update_stm = $this->db->prepare("UPDATE `albums` SET title = :title, artist = :artist, year = :year WHERE id = :id");
-        $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
-        return $update_stm;
+        return $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
     }
 
     public function deleteById($id)
     {
         $delete_stm = $this->db->prepare("DELETE FROM `albums` WHERE id = :id");
-        $delete_stm->execute([':id' => $id]);
-        return $delete_stm;
+        return $delete_stm->execute([':id' => $id]);
     }
 
     public function getAllAlbums()
