@@ -48,8 +48,9 @@ class Controller
                 $album->setTitle($_POST['title']);
                 $album->setArtist($_POST['artist']);
                 $album->setYear($_POST['year']);
-                $success = $this->editAlbum($album);
-                require('view/start.php');
+                $update_success = $this->editAlbum($album);
+                header('Location:view/start.php?update_success=' . (int)$update_success . '&id=' . $album->getId());
+                exit();
             }
         } else {
             require('view/start.php');

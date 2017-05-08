@@ -15,7 +15,7 @@ require "header.php";
     </div>
     <div class="form-group">
         <label for="artist">Artist: </label>
-        <input type="text" name="director" class="form-control" id="artist" value="<?php echo $album->getArtist(); ?>"
+        <input type="text" name="artist" class="form-control" id="artist" value="<?php echo $album->getArtist(); ?>"
                required>
     </div>
     <div class="form-group">
