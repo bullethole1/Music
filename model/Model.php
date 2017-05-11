@@ -8,7 +8,7 @@
  */
 class Model
 {
-    
+
     private $db;
 
     public function __construct(PDO $db)
