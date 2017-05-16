@@ -8,6 +8,8 @@ require('view/header.php');
             <th>Title</th>
             <th>Artist</th>
             <th>Year</th>
+            <th></th>
+            <th></th>
         </tr>
         <?php
         foreach ($this->getAllAlbums() as $row) {
