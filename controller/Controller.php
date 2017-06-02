@@ -4,9 +4,9 @@ class Controller
 {
     private $model;
 
-    public function __construct(PDO $db)
+    public function __construct(PDO $pdo)
     {
-        $this->model = new Model($db);
+        $this->model = new Model($pdo);
     }
 
     public function index()
