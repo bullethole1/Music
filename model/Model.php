@@ -1,61 +1,51 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: johanlund
- * Date: 2017-04-10
- * Time: 15:24
- */
-class Model
+abstract class Model
 {
-
+    protected $id;
+    /**
+     * @var Database
+     */
     private $db;
+    protected $table = '';
 
-    public function
-    __construct(PDO $db)
+    public function __construct(Database $db, $modelData = [])
     {
         $this->db = $db;
     }
 
-    public function getAlbumById($id)
+    /**
+     * @return integer
+     */
+    public function getId()
     {
-        $id_stm = $this->db->prepare("SELECT * FROM `albums` WHERE id= :id");
-        $id_stm->execute([':id' => $id]);
-        $id_stm->setFetchMode(PDO::FETCH_ASSOC);
-        return new Album($id_stm->fetch());
+        return $this->id;
     }
 
-    public function saveAlbum(Album $album)
+    /**
+     * @param integer $id
+     */
+    public function setId($id)
     {
-        $this->db->create("albums", $album->toArray());
-        $save_stm = $this->db->prepare("INSERT INTO `albums` (`title`, `artist`, `year`, `url`) VALUES(:title, :artist, :year, :url)");
-        $success = $save_stm->execute([':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear(), ':url' => $album->getUrl()]);
-        if ($success) {
-            $album->setId($this->db->lastInsertId());
-        }
-        return $success;
+        $this->id = $id;
     }
 
-
-    public function updateAlbum(Album $album)
+    /**
+     * @param integer $id
+     * @return Model
+     */
+    public function getById($id)
     {
-        $update_stm = $this->db->prepare("UPDATE `albums` SET title = :title, artist = :artist, year = :year, url = :url WHERE id = :id");
-        return $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear(), ':url' => $album->getUrl()]);
+        return $this->db->getById($this->table, $id);
     }
 
-    public function deleteById($id)
+    public function getAll()
     {
-        $delete_stm = $this->db->prepare("DELETE FROM `albums` WHERE id = :id");
-        return $delete_stm->execute([':id' => $id]);
+        return $this->db->getAll($this->table);
     }
 
-    public function getAllAlbums()
+    public function create($data)
     {
-        $get_stm = $this->db->prepare("SELECT * FROM `albums`");
-        $get_stm->execute();
-        $results = $get_stm->fetchAll(PDO::FETCH_ASSOC);
-        return array_map(function ($item) {
-            return new Album($item);
-        }, $results);
+        return $this->db->create($this->table, $data);
     }
 }
