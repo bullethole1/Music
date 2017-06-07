@@ -55,9 +55,9 @@ class Controller
     }
 
     public
-    function getAllAlbums()
+    function getAllAlbums($table)
     {
-        return $this->model->getAllAlbums();
+        return $this->model->getAll($table);
     }
 
     public
@@ -67,10 +67,10 @@ class Controller
     }
 
     public
-    function deleteAlbum($id)
+    function deleteAlbum($table, $id)
     {
 
-        return $this->model->deleteById($id);
+        return $this->model->delete($table, $id);
     }
 
     public
