@@ -13,6 +13,7 @@ class Album
     private $title;
     private $artist;
     private $year;
+    private $url;
 
     function __construct($album_data = [])
     {
@@ -22,6 +23,7 @@ class Album
             $this->title = @$album_data['title'];
             $this->artist = @$album_data['artist'];
             $this->year = @$album_data['year'];
+            $this->url = @$album_data['url'];
         }
     }
 
@@ -87,4 +89,25 @@ class Album
         $this->id = $id;
     }
 
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    public function toArray() {
+        return [
+          "url" => $this->getUrl()
+        ];
+    }
 }

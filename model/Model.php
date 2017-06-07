@@ -27,8 +27,9 @@ class Model
 
     public function saveAlbum(Album $album)
     {
-        $save_stm = $this->db->prepare("INSERT INTO `albums` (`title`, `artist`, `year`) VALUES(:title, :artist, :year)");
-        $success = $save_stm->execute([':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
+        $this->db->create("albums", $album->toArray());
+        $save_stm = $this->db->prepare("INSERT INTO `albums` (`title`, `artist`, `year`, `url`) VALUES(:title, :artist, :year, :url)");
+        $success = $save_stm->execute([':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear(), ':url' => $album->getUrl()]);
         if ($success) {
             $album->setId($this->db->lastInsertId());
         }
@@ -38,8 +39,8 @@ class Model
 
     public function updateAlbum(Album $album)
     {
-        $update_stm = $this->db->prepare("UPDATE `albums` SET title = :title, artist = :artist, year = :year WHERE id = :id");
-        return $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear()]);
+        $update_stm = $this->db->prepare("UPDATE `albums` SET title = :title, artist = :artist, year = :year, url = :url WHERE id = :id");
+        return $update_stm->execute([':id' => $album->getId(), ':title' => $album->getTitle(), ':artist' => $album->getArtist(), ':year' => $album->getYear(), ':url' => $album->getUrl()]);
     }
 
     public function deleteById($id)

@@ -2,6 +2,21 @@
 /* @var Controller $this */
 require('view/header.php');
 ?>
+<?php if (isset($_GET['success']) && $_GET['success']): ?>
+    <p>Your album was successfully created!</p>
+<?php endif; ?>
+
+<?php if (isset($_GET['success']) && !$_GET['success']): ?>
+    <p>Something went wrong :(</p>
+<?php endif; ?>
+
+<?php if (isset($_GET['update_success']) && $_GET['update_success']): ?>
+    <p>Your album was successfully updated!</p>
+<?php endif; ?>
+
+<?php if (isset($_GET['update_success']) && !$_GET['update_success']): ?>
+    <p>Something went wrong :(</p>
+<?php endif; ?>
     <h2>Johans Albums</h2>
     <table class="table-striped">
         <tr>

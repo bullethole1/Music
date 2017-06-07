@@ -14,9 +14,8 @@ class Controller
 
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (empty($page))
-            require('view/start.php');
-        elseif ($page === "show") {
+        if (empty($page)) {
+        }elseif ($page === "show") {
             if (isset($_POST['delete'])) {
                 $id = $_POST['delete'];
                 $delete_success = $this->deleteAlbum($id);
@@ -29,7 +28,7 @@ class Controller
                 $album->setArtist($_POST['artist']);
                 $album->setYear($_POST['year']);
                 $success = $this->createAlbum($album);
-                header('Location:view/start.php?success=' . (int)$success . '&id=' . $album->getId());
+                header('Location:/?page=show&success=' . (int)$success . '&id=' . $album->getId());
                 exit();
             }
             require('view/create.php');
@@ -47,7 +46,7 @@ class Controller
                 $album->setArtist($_POST['artist']);
                 $album->setYear($_POST['year']);
                 $update_success = $this->editAlbum($album);
-                header('Location:view/start.php?update_success=' . (int)$update_success . '&id=' . $album->getId());
+                header('Location:/?page=show&update_success=' . (int)$update_success . '&id=' . $album->getId());
                 exit();
             }
         } else {
