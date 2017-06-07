@@ -2,11 +2,11 @@
 
 class Controller
 {
-    private $model;
+    private $db;
 
-    public function __construct(PDO $pdo)
+    public function __construct(Database $db)
     {
-        $this->model = new Model($pdo);
+        $this->db = $db;
     }
 
     public function index()
@@ -57,31 +57,31 @@ class Controller
     public
     function getAllAlbums($table)
     {
-        return $this->model->getAll($table);
+        return $this->db->getAll($table);
     }
 
     public
     function editAlbum(Album $album)
     {
-        return $this->model->updateAlbum($album);
+        return $this->db->update('albums', $album->getId(), $album->toArray());
     }
 
     public
-    function deleteAlbum($table, $id)
+    function deleteAlbum($id)
     {
 
-        return $this->model->delete($table, $id);
+        return $this->db->delete('albums', $id);
     }
 
     public
     function createAlbum(Album $album)
     {
-        return $this->model->saveAlbum($album);
+        return $this->db->create('albums', $album->toArray());
     }
 
     public
-    function getById($id)
+    function getById($table, $id)
     {
-        return $this->model->getAlbumById($id);
+        return $this->db->getById($table, $id);
     }
 }

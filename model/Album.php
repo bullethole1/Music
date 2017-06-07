@@ -105,9 +105,10 @@ class Album
         return $this->url;
     }
 
-    public function toArray() {
+    public function toArray()
+    {
         return [
-          "url" => $this->getUrl()
+            "url" => $this->getUrl()
         ];
     }
 }
