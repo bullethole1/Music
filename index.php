@@ -2,6 +2,7 @@
 require('Controller/Controller.php');
 require('model/Model.php');
 require('model/Album.php');
+require ('model/Database.php');
 
 $config = require('resources/config.php');
 $pdo = new PDO($config['db_type'] . ':host=' . $config['db_host'] . ';dbname=' . $config['db_name'], $config['db_username'], $config['db_password']);

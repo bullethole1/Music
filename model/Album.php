@@ -23,7 +23,7 @@ class Album
             $this->title = @$album_data['title'];
             $this->artist = @$album_data['artist'];
             $this->year = @$album_data['year'];
-            $this->url = @$album_data['url'];
+            $this->url = @$album_data['artwork_url'];
         }
     }
 
@@ -108,7 +108,7 @@ class Album
     public function toArray()
     {
         return [
-            "url" => $this->getUrl()
+            "artwork_url" => $this->getUrl()
         ];
     }
 }

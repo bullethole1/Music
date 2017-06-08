@@ -23,23 +23,24 @@ require('view/header.php');
             <th>Title</th>
             <th>Artist</th>
             <th>Year</th>
-            <th></th>
+            <th>Artwork</th>
             <th></th>
         </tr>
         <?php
-        foreach ($this->getAllAlbums() as $row) {
+        foreach ($this->getAllAlbums('albums') as $value) {
             /* @var Album $row */
             ?>
             <tr>
-                <td><?= $row->getTitle(); ?></td>
-                <td><?= $row->getArtist(); ?></td>
-                <td><?= $row->getYear(); ?></td>
+                <td><?= $value['title']; ?></td>
+                <td><?= $value['artist']; ?></td>
+                <td><?= $value['year']; ?></td>
+                <td><?= $value['artwork_url']; ?></td>
                 <td>
-                    <a class="btn btn-default" href="/index.php?page=update&id=<?php echo $row->getId(); ?>">Edit</a>
+                    <a class="btn btn-default" href="/index.php?page=update&id=<?php echo $value['id']; ?>">Edit</a>
                 </td>
                 <td>
                     <form action="../index.php?page=show" method="post">
-                        <input type="hidden" name="delete" value="<?php echo $row->getId(); ?>"/>
+                        <input type="hidden" name="delete" value="<?php echo $value['id']; ?>"/>
                         <button type="submit" class="btn btn-default" id="delete">Delete</button>
                     </form>
                 </td>

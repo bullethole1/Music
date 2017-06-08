@@ -27,7 +27,7 @@ class Database
 
     public function getAll($table)
     {
-        $stm = $this->pdo->prepare('SELECT * FROM ' . $table);
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . 'INNER JOIN ');
         $success = $stm->execute();
         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $rows : [];
@@ -37,16 +37,13 @@ class Database
     {
         $columns = array_keys($data);
         $columnSql = implode(',', $columns);
-        //'name, birthyear, city';
         $bindingSql = ':' . implode(',:', $columns);
-        //':Anna, :1989, :Trollhättan';
         $sql = "INSERT INTO $table ($columnSql) VALUES ($bindingSql)";
         $stm = $this->pdo->prepare($sql);
         foreach ($data as $key => $value) {
             $stm->bindValue(':' . $key, $value);
         }
         $status = $stm->execute();
-        //mellan ? och : är if och mellan : och ; är else.
         return ($status) ? $this->pdo->lastInsertId() : false;
     }
 

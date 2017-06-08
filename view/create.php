@@ -14,6 +14,10 @@ require('header.php');
             <label for="year">Year: </label>
             <input type="text" name="year" class="form-control" id="year" placeholder="Year" required>
         </div>
+        <div class="form-group">
+            <label for="url">Url:</label>
+            <input type="text" name="url" class="form-control" id="url" placeholder="Url" required>
+        </div>
         <button type="submit" class="btn btn-default" name="insert" id="insert">Insert Album</button>
     </form>
 <?php
