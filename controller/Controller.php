@@ -87,4 +87,9 @@ class Controller
     {
         return $this->db->getById($table, $id);
     }
+
+    public function getByAlbumId($id)
+    {
+        return $this->db->getByAlbumId($id);
+    }
 }

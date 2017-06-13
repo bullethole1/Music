@@ -28,13 +28,15 @@ require('view/header.php');
         </tr>
         <?php
         foreach ($this->getAllAlbums('albums') as $value) {
-            /* @var Album $row */
+
             ?>
             <tr>
                 <td><?= $value['title']; ?></td>
                 <td><?= $value['artist']; ?></td>
                 <td><?= $value['year']; ?></td>
-                <td><?= $value['artwork_url']; ?></td>
+                <?php foreach ($this->getByAlbumId($value['id']) as $image): ?>
+                    <td><img src="<?= $image['artwork_url']; ?>"/></td>
+                <?php endforeach;?>
                 <td>
                     <a class="btn btn-default" href="/index.php?page=update&id=<?php echo $value['id']; ?>">Edit</a>
                 </td>

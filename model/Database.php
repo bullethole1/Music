@@ -27,7 +27,7 @@ class Database
 
     public function getAll($table)
     {
-        $stm = $this->pdo->prepare('SELECT * FROM ' . $table . 'INNER JOIN ');
+        $stm = $this->pdo->prepare('SELECT * FROM ' . $table);
         $success = $stm->execute();
         $rows = $stm->fetchAll(PDO::FETCH_ASSOC);
         return ($success) ? $rows : [];
@@ -84,5 +84,12 @@ class Database
         } else {
             return $this->create($table, $data);
         }
+    }
+
+    public function getByAlbumId($id)
+    {
+        $stm = $this->pdo->prepare('SELECT * FROM album_artwork WHERE album_id = :id');
+        $success = $stm->execute([':id' => $id]);
+        return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
 }

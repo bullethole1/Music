@@ -42,4 +42,9 @@ abstract class Model
     {
         return $this->db->update($this->table, $id, $data);
     }
+
+    public function getByAlbumId($album_id)
+    {
+        return $this->db->getByAlbumId($album_id);
+    }
 }
