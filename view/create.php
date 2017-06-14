@@ -16,7 +16,7 @@ require('header.php');
         </div>
         <div class="form-group">
             <label for="url">Url:</label>
-            <input type="text" name="url" class="form-control" id="url" placeholder="Url" required>
+            <input type="text" name="artwork_url" class="form-control" id="artwork_url" placeholder="Url">
         </div>
         <button type="submit" class="btn btn-default" name="insert" id="insert">Insert Album</button>
     </form>

@@ -29,6 +29,7 @@ class Controller
                 $album->setArtist($_POST['artist']);
                 $album->setYear($_POST['year']);
                 $album->setUrl($_POST['artwork_url']);
+                $success = $this->createArtwork($album);
                 $success = $this->createAlbum($album);
                 header('Location:/?page=show&success=' . (int)$success . '&id=' . $album->getId());
                 exit();
@@ -48,6 +49,7 @@ class Controller
                 $album->setArtist($_POST['artist']);
                 $album->setYear($_POST['year']);
                 $album->setUrl($_POST['artwork_url']);
+                $update_success = $this->createArtwork($album);
                 $update_success = $this->editAlbum($album);
                 header('Location:/?page=show&update_success=' . (int)$update_success . '&id=' . $album->getId());
                 exit();
@@ -80,6 +82,12 @@ class Controller
     function createAlbum(Album $album)
     {
         return $this->db->create('albums', $album->toArray());
+    }
+
+    public
+    function createArtwork(Album $album)
+    {
+        return $this->db->create('album_artwork', $album->toArray());
     }
 
     public
