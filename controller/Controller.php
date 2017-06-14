@@ -38,7 +38,7 @@ class Controller
         } elseif ($page === 'update') {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $album = $this->getById($id);
+                $album = $this->getById('albums', $id);
                 require('view/update.php');
             }
             if (isset($_POST['btn-update'])) {

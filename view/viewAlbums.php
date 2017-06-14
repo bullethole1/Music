@@ -36,7 +36,7 @@ require('view/header.php');
                 <td><?= $value['year']; ?></td>
                 <?php foreach ($this->getByAlbumId($value['id']) as $image): ?>
                     <td><img src="<?= $image['artwork_url']; ?>"/></td>
-                <?php endforeach;?>
+                <?php endforeach; ?>
                 <td>
                     <a class="btn btn-default" href="/index.php?page=update&id=<?php echo $value['id']; ?>">Edit</a>
                 </td>

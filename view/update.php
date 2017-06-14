@@ -22,6 +22,10 @@ require "header.php";
         <label for="year">Year: </label>
         <input type="text" name="year" class="form-control" id="year" value="<?php echo $album->getYear(); ?>" required>
     </div>
+    <div class="form-group">
+        <label for="artwork_url">Artwork: </label>
+        <input type="text" name="artwork_url" class="form-control" id="artwork_url" value="<?php echo $album->getUrl(); ?>" >
+    </div>
     <button type="submit" class="btn btn-default" name="btn-update">Update</button>
 </form>
 
