@@ -87,7 +87,7 @@ class Controller
     public
     function createArtwork(Album $album)
     {
-        return $this->db->create('album_artwork', $album->toArray());
+        return $this->db->createArtwork('album_artwork', $album->toArray());
     }
 
     public

@@ -47,4 +47,10 @@ abstract class Model
     {
         return $this->db->getByAlbumId($album_id);
     }
+
+    public function createArtwork($data)
+    {
+        return $this->db->createArtwork($this->table, $data);
+    }
+
 }

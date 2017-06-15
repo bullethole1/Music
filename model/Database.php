@@ -92,4 +92,18 @@ class Database
         $success = $stm->execute([':id' => $id]);
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function createArtwork($table, $data)
+    {
+        $columns = array_keys($data);
+        $columnSql = implode(',', $columns);
+        $bindingSql = ':' . implode(',:', $columns);
+        $sql = "INSERT INTO $table ($columnSql) VALUES ($bindingSql)";
+        $stm = $this->pdo->prepare($sql);
+        foreach ($data as $key => $value) {
+            $stm->bindValue(':' . $key, $value);
+        }
+        $status = $stm->execute();
+        return ($status) ? $this->pdo->lastInsertId() : false;
+    }
 }
